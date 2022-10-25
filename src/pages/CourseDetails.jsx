@@ -1,14 +1,11 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import { FiCheck } from "@react-icons/all-files/fi/FiCheck"
-import { RiVideoFill } from "@react-icons/all-files/ri/RiVideoFill"
 import { useContext } from 'react';
 import { mainContext } from '../context/MainContext';
+import { FaPlayCircle ,FaVideo,FaCheckCircle,FaKey,FaTeamspeak,FaCertificate} from "react-icons/fa";
 
 
-
-
-
+//FaPlayCircle
 const CourseDetails = () => {
     const course = useLoaderData();
     const {dark} = useContext(mainContext);
@@ -19,17 +16,41 @@ const CourseDetails = () => {
             <div className="mt-4">
                 <aside className="p-6  mx-auto bg-gray-900 text-gray-100 rounded">
                     <nav className=" text-sm ">
-                        <div className="space-y-2" bis_skin_checked="1">
-                            <Link className='btn btn-secondary'>Buy Premium</Link>
+                        <div className="space-y-4 text-xl font-serif" bis_skin_checked="1">
+                            <Link className='btn btn-accent rounded-3xl w-full'>Buy Premium</Link>
                             <div className="flex flex-col it space-y-1" bis_skin_checked="1">
-                                <a rel="noopener noreferrer" href="#">Installation</a>
-                                <a rel="noopener noreferrer" href="#">Plugins</a>
-                                <a rel="noopener noreferrer" href="#">Migrations</a>
-                                <a rel="noopener noreferrer" href="#">Appearance</a>
-                                <a rel="noopener noreferrer" href="#">Mamba UI</a>
+                                <p className='flex gap-1 items-center'><FaPlayCircle/>{time} hour on-demand video</p>
+                                <p className='flex gap-1 items-center'><FaVideo/>{videos} videos</p>
+                                <p className='flex gap-1 items-center'><FaKey/>Full lifetime access</p>
+                                <p className='flex gap-1 items-center'><FaTeamspeak/>24/7 Support</p>
+                                <p className='flex gap-1 items-center'><FaCertificate/>Certificates</p>
                             </div>
                         </div>
                     </nav>
+                    
+                </aside>
+                <aside className="py-6  mx-auto bg-gray-900 text-gray-100 rounded my-4">
+                <div className="space-y-2" bis_skin_checked="1">
+                    <h2 className="px-6 text-sm font-semibold tracking-widest uppercase dark:text-gray-400">Course Features</h2>
+                    <div className="flex flex-col space-y-1 " bis_skin_checked="1">
+                       <div className="flex px-6 justify-between border-t py-1">
+                            <p className='flex gap-1 items-center'><FaCertificate/>Lectures</p>
+                            <p>{chapter}</p>
+                       </div>
+                       <div className="flex px-6 justify-between border-t py-1">
+                            <p className='flex gap-1 items-center'><FaCertificate/>Quizzes</p>
+                            <p>{quiz}</p>
+                       </div>
+                       <div className="flex px-6 justify-between border-t py-1">
+                            <p className='flex gap-1 items-center'><FaCertificate/>Duration</p>
+                            <p>{time} Hours</p>
+                       </div>
+                       <div className="flex px-6 justify-between border-y py-1">
+                            <p className='flex gap-1 items-center'><FaCertificate/>Language</p>
+                            <p>Bangla</p>
+                       </div>
+                    </div>
+                </div>
                 </aside>
             </div>
             <div className="lg:col-span-3">
@@ -50,7 +71,7 @@ const CourseDetails = () => {
                 <div className={`border ${dark || 'border-black border'}  p-7 my-4 rounded`}>
                     <p className='text-xl font-semibold font-serif '>What you'll Learn ?</p>
                     <ul className='grid grid-cols-2 p-1'>
-                        {whatLearning.map(w => <li className='flex gap-1 items-top'> <FiCheck className='bg-red-900 rounded-full p-1 text-xl' /> {w}</li>)}
+                        {whatLearning.map(w => <li className='flex gap-1 items-top'> <FaCheckCircle className='bg-red-900 rounded-full p-1 text-xl' /> {w}</li>)}
                     </ul>
                     {
                         courseContent.map(c => <div className="collapse my-2 rounded">
@@ -59,7 +80,7 @@ const CourseDetails = () => {
                             {c}
                             </div>
                             <div className="collapse-content h-10  bg-secondary text-primary-content peer-checked:bg-warning peer-checked:text-primary"> 
-                            <p className='flex items-center leading-10 gap-1'><RiVideoFill/>: {c}</p>
+                            <p className='flex items-center leading-10 gap-1 '><FaPlayCircle/>: {c}</p>
                             </div>
                         </div> )
                     }
