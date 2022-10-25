@@ -8,7 +8,7 @@ const CourseCard = ({course}) => {
     if(!course){
         return
     }
-    const {name,image,isPremium} = course;
+    const {name,image,isPremium,id,aboutCourse} = course;
     return (
         <div>
             <div className={` rounded-md shadow-md ${dark ? 'bg-gray-100 text-gray-900' : 'bg-gray-900 text-gray-100'}`} >
@@ -19,9 +19,9 @@ const CourseCard = ({course}) => {
             <div className="flex flex-col justify-between p-6 space-y-8" >
                 <div className="space-y-2" >
                     <h2 className="text-2xl font-semibold tracking-wide">{name}</h2>
-                    <p className="dark:text-gray-100">Course Details erat nunc, sed ullamcorper erat vestibulum eget.</p>
+                    <p className="dark:text-gray-100">{aboutCourse.length > 100 ? aboutCourse.slice(0,100) : aboutCourse}</p>
                 </div>
-                <Link type="button" className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-violet-400 text-gray-900">Details</Link>
+                <Link to={`/course/${id}`} className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-violet-400 text-gray-900">Details</Link>
             </div>
         </div>
         </div>

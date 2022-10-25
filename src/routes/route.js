@@ -29,7 +29,7 @@ export const route = createBrowserRouter([
             },
             {
                 path:'/course/:id',
-                loader:() =>fetch(''),
+                loader:({params}) =>fetch(`https://b610-lerning-platform-server-side-ismailhossendev-main.vercel.app/course/${params.id}`),
                 element:<CourseDetails/>
             }
         ])
