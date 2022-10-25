@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { useContext } from 'react';
 import { mainContext } from '../context/MainContext';
-import { FaPlayCircle ,FaVideo,FaCheckCircle,FaKey,FaTeamspeak,FaCertificate} from "react-icons/fa";
+import { FaPlayCircle ,FaVideo,FaCheckCircle,FaKey,FaTeamspeak,FaCertificate,FaPrint} from "react-icons/fa";
 
 
 //FaPlayCircle
@@ -12,8 +12,9 @@ const CourseDetails = () => {
     const {name,image,time,videos,quiz,chapter,instructor,instractorDetails,instractorImg,whatLearning,aboutCourse,courseContent,id} = course;
     console.log(courseContent);
     return (
-        <div className='lg:w-10/12 w-[95%] space-y-4 gap-4 mx-auto grid lg:grid-cols-4  my-10'>
+        <div className='lg:w-10/12 w-[95%] space-y-4 gap-4 mx-auto grid lg:grid-cols-4  my-10 relative'>
             <div className="mt-4">
+            <p className='absolute top-0 right-0 btn-circle btn btn-primary'><FaPrint/></p>
                 <aside className="p-6  mx-auto bg-gray-900 text-gray-100 rounded">
                     <nav className=" text-sm ">
                         <div className="space-y-4 text-xl font-serif" bis_skin_checked="1">
