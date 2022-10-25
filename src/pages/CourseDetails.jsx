@@ -9,7 +9,7 @@ import { FaPlayCircle ,FaVideo,FaCheckCircle,FaKey,FaTeamspeak,FaCertificate} fr
 const CourseDetails = () => {
     const course = useLoaderData();
     const {dark} = useContext(mainContext);
-    const {name,image,enrolled,time,isPremium,videos,quiz,chapter,note,category,instructor,instractorDetails,instractorImg,whatLearning,aboutCourse,courseContent} = course;
+    const {name,image,time,videos,quiz,chapter,instructor,instractorDetails,instractorImg,whatLearning,aboutCourse,courseContent,id} = course;
     console.log(courseContent);
     return (
         <div className='lg:w-10/12 w-[95%] space-y-4 gap-4 mx-auto grid lg:grid-cols-4  my-10'>
@@ -17,7 +17,7 @@ const CourseDetails = () => {
                 <aside className="p-6  mx-auto bg-gray-900 text-gray-100 rounded">
                     <nav className=" text-sm ">
                         <div className="space-y-4 text-xl font-serif" bis_skin_checked="1">
-                            <Link className='btn btn-accent rounded-3xl w-full'>Buy Premium</Link>
+                            <Link to={`/checkout/${id}`} className='btn btn-accent rounded-3xl w-full'>Buy Premium</Link>
                             <div className="flex flex-col it space-y-1" bis_skin_checked="1">
                                 <p className='flex gap-1 items-center'><FaPlayCircle/>{time} hour on-demand video</p>
                                 <p className='flex gap-1 items-center'><FaVideo/>{videos} videos</p>
@@ -58,7 +58,7 @@ const CourseDetails = () => {
                     <div className="flex space-x-4" bis_skin_checked="1">
                         <img alt="" src={instractorImg} className="object-cover w-12 h-12 rounded-full shadow bg-gray-500" />
                         <div className="flex flex-col space-y-1" bis_skin_checked="1">
-                            <a rel="noopener noreferrer" href="#" className="text-sm font-semibold">{instructor}</a>
+                            <Link rel="noopener noreferrer" href="#" className="text-sm font-semibold">{instructor}</Link>
                             <span className="text-xs text-gray-400">{instractorDetails}</span>
                         </div>
                     </div>
