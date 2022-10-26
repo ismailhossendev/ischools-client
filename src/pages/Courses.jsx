@@ -12,7 +12,7 @@ const Courses = () => {
 
     const handleCategory = (e) =>{
         const categoryName = e.target.value;
-            console.log(categoryName);
+        console.log(categoryName);
         setActive(categoryName)
         if(categoryName === 'all'){
             setCategory(courses)

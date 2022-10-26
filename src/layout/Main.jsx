@@ -5,10 +5,10 @@ import Header from '../components/Header';
 
 const Main = () => {
     return (
-        <div className='relative'>
+        <div className='relative '>
             <Header/>
             <Outlet/>
-            <Footer/>
+            <Footer />
         </div>
     );
 };
