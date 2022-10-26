@@ -1,16 +1,23 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { FaCcVisa,FaCcStripe,FaCcPaypal,FaCcJcb} from "react-icons/fa";
+import { useContext } from 'react';
+import { mainContext } from '../context/MainContext';
+import toast from 'react-hot-toast';
 
 const CheckOut = () => {
     const course = useLoaderData()
+    const {user,loading} = useContext(mainContext)
+    if(loading){
+        return
+    }
 
     return (
         <div className='flex justify-center my-10 w-full'>
-            <div className="lg:w-96 w-10/12 shadow-black shadow my-10 p-4 rounded-xl relative">
+            <div className="lg:w-96 w-10/12 shadow-black shadow-2xl my-10 p-4 rounded-xl relative">
                 <div className="avatar absolute -top-10 right-[40%]">
                     <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                        <img src="https://placeimg.com/192/192/people" />
+                        <img src={!user?.photoURL ? "https://placeimg.com/192/192/people" : user?.photoURL} alt="payment" />
                     </div>
                 </div>
                 <div className="mt-20 text-center ">
@@ -30,7 +37,7 @@ const CheckOut = () => {
                          <label for="email" className="block mb-1 text-sm">Email address</label>
                         <input type="email" name="email" id="email" placeholder="leroy@jenkins.com" className="w-full  px-3 py-2 border rounded-md border-gray-700 bg-gray-600 text-gray-100" />
                     </div>
-                    <button className='btn w-full btn-primary '>Confirm Payment</button>
+                    <button className='btn w-full btn-primary ' onClick={() => toast.success('Payment Confirm')}>Confirm Payment</button>
                 </div>
             </div>
         </div>

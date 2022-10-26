@@ -6,6 +6,7 @@ import Courses from "../pages/Courses";
 import Error from "../pages/Error";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
+import NeedLogin from "../pages/NeedLogin";
 import Register from "../pages/Register";
 
 export const route = createBrowserRouter([
@@ -38,7 +39,7 @@ export const route = createBrowserRouter([
             {
                 path:'/checkout/:id',
                 loader:({params}) =>fetch(`https://b610-lerning-platform-server-side-ismailhossendev-main.vercel.app/course/${params.id}`),
-                element:<CheckOut/>
+                element:<NeedLogin><CheckOut/></NeedLogin>
             },
             
             

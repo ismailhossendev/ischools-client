@@ -25,7 +25,6 @@ const MainContext = ({children}) => {
         .then(res => res.json())
         .then(data => {
             setCourses(data)
-            setLoading(false)
         })
     },[])
 
@@ -56,17 +55,19 @@ const MainContext = ({children}) => {
     const signOutUser = () =>{
         signOut(auth).then(()=>{
         toast.success('Sign Out successfully')
+        setLoading(false)
         }).catch(()=>{})
     }
     useEffect(()=>{
         const unlink = onAuthStateChanged(auth,(result)=>{
             setUser(result)
+            setLoading(false)
         })
         return () => unlink();
     },[])
 
 
-    const value = {dark,setDark,courses,loading,withGoogle,signWithEmail,profileUpdate,withGithub,user,createUser,signOutUser}
+    const value = {dark,setDark,courses,loading,setLoading,withGoogle,signWithEmail,profileUpdate,withGithub,user,createUser,signOutUser}
     return (
         <div>
             <mainContext.Provider value={value}>

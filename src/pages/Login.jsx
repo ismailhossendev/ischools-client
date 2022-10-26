@@ -1,16 +1,23 @@
 import React from 'react';
 import { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { mainContext } from '../context/MainContext';
 
 
 const Login = () => {
-    const {withGoogle,signWithEmail,withGithub} = useContext(mainContext);
+    const {withGoogle,signWithEmail,withGithub,setLoading,loading} = useContext(mainContext);
+
+    const location = useLocation();
+    const from = location?.state?.from?.pathname || '/'
+    const navigate = useNavigate()
+
+
         const handleGoogle = () =>{
             withGoogle()
             .then(user =>{
                 toast.success('Successfully Login')
+                navigate(from,{replace:true});
             }).catch(error=>{
                 toast.error(error.code)
             })
@@ -19,6 +26,7 @@ const Login = () => {
             withGithub()
             .then(user =>{
                 toast.success('Successfully Login')
+                navigate(from,{replace:true});
             }).catch(error=>{
                 toast.error(error.code)
             })
@@ -32,9 +40,12 @@ const Login = () => {
 
             signWithEmail(email,password)
             .then(result =>{
-                toast.success('Successfully Login');
+                toast.success('Successfully Login')
+                navigate(from,{replace:true});
+                
             }).catch(error =>{
                 toast.error(error.code)
+                setLoading(false)
             })
 
         }

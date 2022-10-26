@@ -1,16 +1,23 @@
 import { updateProfile } from 'firebase/auth';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { mainContext } from '../context/MainContext';
 
 
 const Register = () => {
-    const {loading,withGoogle,withGithub,createUser,profileUpdate} = useContext(mainContext);
+    const {setLoading,withGoogle,withGithub,createUser,profileUpdate} = useContext(mainContext);
+
+    const location = useLocation();
+    const from = location?.state?.from?.pathname || '/'
+    const navigate = useNavigate()
+
+
     const handleGoogle = () =>{
         withGoogle()
         .then(user =>{
             toast.success('Successfully Login')
+            navigate(from,{replace:true});
         }).catch(error=>{
             toast.error(error.code)
         })
@@ -19,6 +26,7 @@ const Register = () => {
         withGithub()
         .then(user =>{
             toast.success('Successfully Login')
+            navigate(from,{replace:true});
             
         }).catch(error=>{
             toast.error(error.code)
@@ -36,10 +44,12 @@ const Register = () => {
         createUser(email,password)
         .then(result =>{
             toast.success('User Register successfully')
-            updateProfile(photoUrl,displayName)
+            profileUpdate(photoUrl,displayName)
             .then(()=>{})
+            navigate(from,{replace:true});
         }).catch(error =>{
             toast.error(error.code)
+            setLoading(false)
         })
 
     }
