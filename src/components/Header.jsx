@@ -2,47 +2,94 @@ import React from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { mainContext } from '../context/MainContext';
+import { FaRegMoon,FaRegLightbulb ,FaSchool,FaUserAlt} from "react-icons/fa";
 
 const Header = () => {
-    const {dark,setDark} = useContext(mainContext)
+    const {dark,setDark,user} = useContext(mainContext)
     return (
-            <header className={`p-4 border-b-2 sticky top-0 z-50 ${dark ? 'bg-gray-900 text-white': 'bg-gray-300 text-zinc-900 border-black'}`}>
-                <div className="container flex justify-between h-16 mx-auto" bis_skin_checked="1">
-                    <div className="flex" bis_skin_checked="1">
-                        <Link to='/' aria-label="Back to homepage" className="flex items-center p-2 font-serif font-semibold text-2xl">
-                            ISchools
-                        </Link>
-                        <ul className="items-stretch hidden space-x-3 lg:flex">
-                            <li className="flex">
-                                <Link to='/courses'  className="flex items-center px-4 -mb-1 border-b-2 border-transparent">Courses</Link>
-                            </li><li className="flex">
-                                <Link to='/blog' className="flex items-center px-4 -mb-1 border-b-2 border-transparent">Blog</Link>
-                            </li><li className="flex">
-                                <Link to='/contact' className="flex items-center px-4 -mb-1 border-b-2 border-transparent">Contact</Link>
-                            </li><li className="flex">
-                                <Link to='/register' className="flex items-center px-4 -mb-1 border-b-2 border-transparent">Register</Link>
-                            </li>
-                        </ul>
+        <div className="navbar lg:w-10/12 mx-auto">
+        <div className="navbar-start">
+          <div className="dropdown">
+            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+            </label>
+            <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 text-gray-800 rounded-box w-52">
+                <li className="flex">
+                    <Link to='/courses'  className="flex items-center px-4 -mb-1 border-b-2 border-transparent">Courses</Link>
+                </li><li className="flex">
+                    <Link to='/blog' className="flex items-center px-4 -mb-1 border-b-2 border-transparent">Blog</Link>
+                </li><li className="flex">
+                    <Link to='/contact' className="flex items-center px-4 -mb-1 border-b-2 border-transparent">Contact</Link>
+                </li><li className="flex">
+                    <Link to='/register' className="flex items-center px-4 -mb-1 border-b-2 border-transparent">Register</Link>
+                </li>
+                <div className="block md:block ">
+                {   
+                    !user?.uid ?
+                    <li> <Link to='/login' className="">Login</Link></li>
+                    :
+                    <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
+                        <div className="avatar">
+                            <div className="w-14 mx-3 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 " >
+                                { user?.photoURL ? 
+                                    <img src={user?.photoURL} alt="profile" />
+                                :
+                                <img className='w-14  rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 ' src="https://us.123rf.com/450wm/urfandadashov/urfandadashov1809/urfandadashov180901275/109135379-photo-not-available-vector-icon-isolated-on-transparent-background-photo-not-available-logo-concept.jpg?ver=6" alt="" />
+                                }
+
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div className="items-center flex-shrink-0 hidden lg:flex" bis_skin_checked="1">
-                        <label for="Toggle1" className="inline-flex items-center space-x-4 cursor-pointer  mx-4">
-                            <span>{dark ? 'Light' : 'Dark'} </span>
-                            <span className="relative">
-                                <input onClick={()=> setDark(!dark)} id="Toggle1" type="checkbox" className="hidden peer" />
-                                <div className="w-10 h-6 rounded-full shadow-inner bg-gray-400 peer-checked:bg-violet-400" bis_skin_checked="1"></div>
-                                <div className="absolute inset-y-0 left-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto bg-gray-800" bis_skin_checked="1"></div>
-                            </span>
-                        </label>
-                        <Link to='/login' className="px-8 py-3 font-semibold rounded bg-violet-400 text-gray-900">Log in</Link>
+                }
+            </div>
+            </ul>
+          </div>
+          <Link to='/' className="btn btn-ghost normal-case text-2xl"> <FaSchool/> ISchools</Link>
+        </div>
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal p-0">
+            <li className="flex">
+                <Link to='/courses'  className="flex items-center px-4 -mb-1 border-b-2 border-transparent">Courses</Link>
+            </li><li className="flex">
+                <Link to='/blog' className="flex items-center px-4 -mb-1 border-b-2 border-transparent">Blog</Link>
+            </li><li className="flex">
+                <Link to='/contact' className="flex items-center px-4 -mb-1 border-b-2 border-transparent">Contact</Link>
+            </li><li className="flex">
+                <Link to='/register' className="flex items-center px-4 -mb-1 border-b-2 border-transparent">Register</Link>
+            </li>
+          </ul>
+        </div>
+        <div className="navbar-end ">
+            <div onClick={()=>setDark(!dark)} className="mx-4 flex text-2xl btn btn-circle">
+               { dark ? 
+                 <FaRegMoon/>  :
+                 <FaRegLightbulb/>
+               }
+               
+
+            </div>
+            <div className="hidden md:block">
+                {   
+                    !user?.uid ?
+                    <Link to='/login' className="btn btn-warning">Login</Link>
+                    :
+                    <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
+                        <div className="avatar">
+                            <div className="w-14 mx-3 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 " >
+                                { user?.photoURL ? 
+                                    <img src={user?.photoURL} />
+                                :
+                                <img className='w-14  rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 ' src="https://us.123rf.com/450wm/urfandadashov/urfandadashov1809/urfandadashov180901275/109135379-photo-not-available-vector-icon-isolated-on-transparent-background-photo-not-available-logo-concept.jpg?ver=6" alt="" />
+                                }
+
+                            </div>
+                        </div>
                     </div>
-                    <button className="p-4 lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 ">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
-            </header>
+                }
+            </div>
+            
+        </div>
+      </div>
     );
 };
 

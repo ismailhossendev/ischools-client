@@ -43,9 +43,9 @@ const MainContext = ({children}) => {
         return createUserWithEmailAndPassword(auth,email,password)
     }
 
-    const profileUpdate = (photoUrl,displayName) =>{
+    const profileUpdate = (photoURL,displayName) =>{
         setLoading(true)
-       return updateProfile(auth.currentUser,{photoUrl,displayName})
+       return updateProfile(auth.currentUser,{photoURL,displayName})
     }
 
     const withGithub = () =>{
