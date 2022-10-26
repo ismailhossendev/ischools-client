@@ -30,7 +30,7 @@ const CourseDetails = () => {
                     <aside className="p-6  mx-auto bg-gray-900 text-gray-100 rounded">
                         <nav className=" text-sm ">
                             <div className="space-y-4 text-xl font-serif" bis_skin_checked="1">
-                                <Link to={`/checkout/${id}`} className='btn btn-accent rounded-3xl w-full'>Buy Premium</Link>
+                                <Link to={`/checkout/${id}`} className='btn btn-accent rounded-3xl w-full'>Get Premium Access</Link>
                                 <div className="flex flex-col it space-y-1" bis_skin_checked="1">
                                     <p className='flex gap-1 items-center'><FaPlayCircle/>{time} hour on-demand video</p>
                                     <p className='flex gap-1 items-center'><FaVideo/>{videos} videos</p>
