@@ -2,8 +2,9 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
-import {createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, updateProfile} from 'firebase/auth'
+import {createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth'
 import app from '../firebase/firebase.confiq';
+import toast from 'react-hot-toast';
 export const mainContext = createContext();
 const auth = getAuth(app)
 
@@ -52,7 +53,11 @@ const MainContext = ({children}) => {
         setLoading(true)
         return signInWithPopup(auth,gitProvider)
     }
-
+    const signOutUser = () =>{
+        signOut(auth).then(()=>{
+        toast.success('Sign Out successfully')
+        }).catch(()=>{})
+    }
     useEffect(()=>{
         const unlink = onAuthStateChanged(auth,(result)=>{
             setUser(result)
@@ -61,7 +66,7 @@ const MainContext = ({children}) => {
     },[])
 
 
-    const value = {dark,setDark,courses,loading,withGoogle,signWithEmail,profileUpdate,withGithub,user,createUser}
+    const value = {dark,setDark,courses,loading,withGoogle,signWithEmail,profileUpdate,withGithub,user,createUser,signOutUser}
     return (
         <div>
             <mainContext.Provider value={value}>

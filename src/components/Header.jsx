@@ -2,10 +2,12 @@ import React from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { mainContext } from '../context/MainContext';
-import { FaRegMoon,FaRegLightbulb ,FaSchool,FaUserAlt} from "react-icons/fa";
+import { FaRegMoon,FaRegLightbulb ,FaSchool} from "react-icons/fa";
+import toast from 'react-hot-toast';
 
 const Header = () => {
-    const {dark,setDark,user} = useContext(mainContext)
+    const {dark,setDark,user,signOutUser} = useContext(mainContext)
+
     return (
         <div className="navbar lg:w-10/12 mx-auto">
         <div className="navbar-start">
@@ -23,23 +25,27 @@ const Header = () => {
                 </li><li className="flex">
                     <Link to='/register' className="flex items-center px-4 -mb-1 border-b-2 border-transparent">Register</Link>
                 </li>
-                <div className="block md:block ">
+                <div className="flex md:hidden ">
+                
                 {   
                     !user?.uid ?
-                    <li> <Link to='/login' className="">Login</Link></li>
+                         <Link  to='/login' className="btn btn-warning">Login</Link>
                     :
-                    <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
+                    <>
+                                                <button onClick={signOutUser} className='btn btn-primary'>Sign Out</button>
+                        <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
                         <div className="avatar">
                             <div className="w-14 mx-3 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 " >
                                 { user?.photoURL ? 
                                     <img src={user?.photoURL} alt="profile" />
                                 :
-                                <img className='w-14  rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 ' src="https://us.123rf.com/450wm/urfandadashov/urfandadashov1809/urfandadashov180901275/109135379-photo-not-available-vector-icon-isolated-on-transparent-background-photo-not-available-logo-concept.jpg?ver=6" alt="" />
-                                }
+                                    <img className='w-14  rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 ' src="https://us.123rf.com/450wm/urfandadashov/urfandadashov1809/urfandadashov180901275/109135379-photo-not-available-vector-icon-isolated-on-transparent-background-photo-not-available-logo-concept.jpg?ver=6" alt="" />
+                                    }
 
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </>
                 }
             </div>
             </ul>
@@ -68,12 +74,15 @@ const Header = () => {
                
 
             </div>
-            <div className="hidden md:block">
+            <div className="hidden md:flex items-center">
+
                 {   
                     !user?.uid ?
                     <Link to='/login' className="btn btn-warning">Login</Link>
                     :
-                    <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
+                    <>  
+                        <button onClick={signOutUser} className='btn btn-primary'>Sign Out</button>
+                        <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
                         <div className="avatar">
                             <div className="w-14 mx-3 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 " >
                                 { user?.photoURL ? 
@@ -85,6 +94,7 @@ const Header = () => {
                             </div>
                         </div>
                     </div>
+                    </>
                 }
             </div>
             

@@ -50,17 +50,17 @@ const Register = () => {
             <h1 className="text-2xl font-bold text-center">Register</h1>
             <form onSubmit={handleCreate} className="space-y-6 ng-untouched ng-pristine ng-valid">
                 <div className="space-y-1 text-sm" bis_skin_checked="1">
-                    <label for="fullName" className="block text-gray-400">Full Name</label>
+                    <label htmlFor="fullName" className="block text-gray-400">Full Name</label>
                     <input type="text" name="fullName" id="fullName" placeholder="Full Name" className="w-full px-4 py-3 rounded-md border border-gray-700 bg-gray-900 text-gray-100 focus:border-violet-400" required />
                 </div>
                 <div className="space-y-1 text-sm" bis_skin_checked="1">
-                    <label for="photoUrl" className="block text-gray-400">Photo Url</label>
+                    <label htmlFor="photoUrl" className="block text-gray-400">Photo Url</label>
                     <input type="text" name="photoUrl" id="photoUrl" placeholder="https://image.com/profile" className="w-full px-4 py-3 rounded-md border border-gray-700 bg-gray-900 text-gray-100 focus:border-violet-400" />
                 </div>
                 <div className="space-y-1 text-sm" bis_skin_checked="1">
-                <label for="photoUrl" className="block text-gray-400">Email</label>
+                <label htmlFor="photoUrl" className="block text-gray-400">Email</label>
                     <input type="email" name="email" id="photoUrl" placeholder="example@gmail.com" className="w-full px-4 py-3 rounded-md border border-gray-700 bg-gray-900 text-gray-100 focus:border-violet-400" required />
-                    <label for="password" className="block text-gray-400">Password</label>
+                    <label htmlFor="password" className="block text-gray-400">Password</label>
                     <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md border border-gray-700 bg-gray-900 text-gray-100 focus:border-violet-400" required />
                     <div className="flex justify-end text-xs text-gray-400" bis_skin_checked="1">
                         

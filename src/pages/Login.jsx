@@ -6,7 +6,7 @@ import { mainContext } from '../context/MainContext';
 
 
 const Login = () => {
-    const {loading,withGoogle,signWithEmail,withGithub} = useContext(mainContext);
+    const {withGoogle,signWithEmail,withGithub} = useContext(mainContext);
         const handleGoogle = () =>{
             withGoogle()
             .then(user =>{
@@ -46,11 +46,11 @@ const Login = () => {
                 <h1 className="text-2xl font-bold text-center">Login</h1>
                 <form onSubmit={login} className="space-y-6 ng-untouched ng-pristine ng-valid">
                     <div className="space-y-1 text-sm" bis_skin_checked="1">
-                        <label for="email" className="block text-gray-400">Email</label>
+                        <label htmlFor="email" className="block text-gray-400">Email</label>
                         <input type="email" name="email" id="email" placeholder="example@gmail.com" className="w-full px-4 py-3 border rounded-md border-gray-700 bg-gray-900 text-gray-100 focus:border-violet-400" />
                     </div>
                     <div className="space-y-1 text-sm" bis_skin_checked="1">
-                        <label for="password" className="block text-gray-400">Password</label>
+                        <label htmlFor="password" className="block text-gray-400">Password</label>
                         <input type="password" name="password" id="password" placeholder="Password" className="w-full border px-4 py-3 rounded-md border-gray-700 bg-gray-900 text-gray-100 focus:border-violet-400" />
                         <div className="flex justify-end text-xs text-gray-400" bis_skin_checked="1">
                         <Link to='/forgot'>Forgot Password?</Link>
